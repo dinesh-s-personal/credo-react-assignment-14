@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+
+.App-Dark {
+  background-color: white;
+  color: black;
+}
+
+.App-Lite{
+  background-color: black;
+  color: white;
+}
+
+.input-box::placeholder {
+  color: white;
+}

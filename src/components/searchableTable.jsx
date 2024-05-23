@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Button, Table } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
-const SearchableTable = ({ data }) => {
+const SearchableTable = ({ data, theme }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const objNavigate = useNavigate();
 
@@ -21,23 +21,23 @@ const SearchableTable = ({ data }) => {
   }
 
   return (
-    <div style={{ display: 'flex', alignItems: "flex-end", flexDirection: "column", justifyContent: 'flex-end', marginBottom: '10px' }}>
+    <div style={{ display: 'flex', alignItems: "flex-end", flexDirection: "column", justifyContent: 'flex-end', marginBottom: '10px' }}
+        className={theme ? 'App-Dark' : 'App-Lite'}>
       <input
         type="text"
         placeholder="Search..."
         value={searchTerm}
         onChange={handleSearchChange}
         style={{ marginBottom: '10px', padding: '5px', width: '20%' }}
+        className={theme ? 'App-Dark' : 'App-Lite input-box'}
       />
-      <Table className="table">
+      <table style={{ marginBottom: '10px', padding: '5px', width: '100%' }}
+            className={theme ? 'App-Dark' : 'App-Lite'}>
         <thead>
           <tr>
             <th>Sl.No</th>
-            {Object.keys(data[0]).map((key) => (
-                (key !== "__typename" &&
-                    <th key={key}>{key}</th>
-                )
-            ))}
+            <th>Name</th>
+            <th>Code</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -56,7 +56,7 @@ const SearchableTable = ({ data }) => {
             </tr>
           ))}
         </tbody>
-      </Table>
+      </table>
     </div>
   );
 };
